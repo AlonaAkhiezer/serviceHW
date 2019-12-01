@@ -44,5 +44,5 @@ export class AppComponent implements OnInit {
   selectType(type: string): void{
     this.selectedType = type;
     this.selectPlace(this.places.filter((x) => x.type == type)[0]);
-  }
+  }  
 }
