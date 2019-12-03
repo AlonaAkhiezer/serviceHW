@@ -1,5 +1,7 @@
 import { Component, Output, OnInit } from '@angular/core';
-import { IPlace, places, IWeather, ISocial } from 'src/mock/itemsData';
+import { GetAPIService } from './get-api.service';
+import { IProject } from './IProject';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,42 +9,23 @@ import { IPlace, places, IWeather, ISocial } from 'src/mock/itemsData';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-  title = 'PlacesHW';
+export class AppComponent {
+  title = 'ServiceHW';
 
-  public places: IPlace[] = places;
+  public searchTerm: string;
 
-  @Output()
-  public weather: IWeather;
+  public apis$: Observable<IProject[]>;
 
-  @Output()
-  public social: ISocial;
+  public constructor(
+    private getAPIService: GetAPIService
+  ) {}
 
-  public currentPlace: IPlace;
-
-  public placesTypes: string[];
-
-  public selectedType:string;
-
-  selectPlace(place: IPlace): void {
-    this.weather = place.weather; 
-    this.social = place.social_info;
-    this.currentPlace = place;
+  public search(event: Event) {
+    this.searchTerm = (event.target as HTMLInputElement).value;
   }
 
-  public ngOnInit(){    
-    this.initPlacesTypes();
-    this.selectPlace(places[0]);
+  public searchAPI() {
+    this.searchTerm = this.searchTerm || 'angular';
+    this.apis$ = this.getAPIService.getAPIs(this.searchTerm); 
   }
-
-  initPlacesTypes(): void{
-    this.placesTypes = places.map(x => x.type);
-    this.placesTypes = this.placesTypes.filter((v,i) => this.placesTypes.indexOf(v) === i);
-    this.selectedType = this.placesTypes[0];
-  }
-
-  selectType(type: string): void{
-    this.selectedType = type;
-    this.selectPlace(this.places.filter((x) => x.type == type)[0]);
-  }  
 }

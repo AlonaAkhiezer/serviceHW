@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IAPIObj } from '../apiObj';
+import { IProject } from '../IProject';
 
 @Component({
   selector: 'app-project',
@@ -9,7 +9,7 @@ import { IAPIObj } from '../apiObj';
 export class ProjectComponent implements OnInit {
 
   @Input()
-  public item: IAPIObj
+  public item: IProject
 
   constructor() { }
 
