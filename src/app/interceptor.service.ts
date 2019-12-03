@@ -1,16 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BASE_URL_TOKEN } from './config';
 import { filter, map } from 'rxjs/operators';
 
-@Injectable()
 export class InterceptorService implements HttpInterceptor {
-
-  constructor(
-    @Inject(BASE_URL_TOKEN) private baseUrl: string
-  ) {}
-
+  
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> { 
     req.clone({responseType: 'json'});
     const headers: HttpHeaders = req.headers.append('Content-type', 'json')

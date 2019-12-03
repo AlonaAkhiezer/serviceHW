@@ -9,7 +9,6 @@ import {
   MatCardModule
 } from '@angular/material';
 
-
 @NgModule({
   exports: [
     MatButtonModule,

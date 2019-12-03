@@ -14,7 +14,7 @@ import { ProjectComponent } from './project/project.component';
   declarations: [
     AppComponent,
     ProjectComponent
-      ],
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
