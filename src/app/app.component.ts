@@ -15,6 +15,7 @@ export class AppComponent {
   public searchTerm: string;
 
   public apis$: Observable<IProject[]>;
+  public proj: IProject[];
 
   public constructor(
     private getAPIService: GetAPIService
@@ -26,6 +27,7 @@ export class AppComponent {
 
   public searchAPI() {
     this.searchTerm = this.searchTerm || 'angular';
-    this.apis$ = this.getAPIService.getAPIs(this.searchTerm); 
+    //this.apis$ = this.getAPIService.getAPIs(this.searchTerm);
+    this.getAPIService.getAPIs(this.searchTerm).subscribe(item => this.proj = item) ;
   }
 }

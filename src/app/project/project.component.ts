@@ -6,14 +6,9 @@ import { IProject } from '../IProject';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent {
 
   @Input()
   public item: IProject
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

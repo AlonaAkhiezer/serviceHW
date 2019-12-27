@@ -3,7 +3,7 @@
 </mat-form-field>
 <button mat-raised-button color="primary" (click)="searchAPI()">Search</button>
 
-<mat-grid-list  cols="4" *ngIf="apis$ | async as proj">
+<mat-grid-list  cols="4" *ngIf="proj">  <!-- apis$ | async as proj -->
     <mat-grid-tile *ngFor="let item of proj.items">
         <app-project [item]="item"></app-project>
     </mat-grid-tile>
